@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/appointment-book/static/css/main.20de20c2.css",
-    "main.js": "/appointment-book/static/js/main.15678713.js",
+    "main.js": "/appointment-book/static/js/main.fe638b9c.js",
     "index.html": "/appointment-book/index.html",
     "main.20de20c2.css.map": "/appointment-book/static/css/main.20de20c2.css.map",
-    "main.15678713.js.map": "/appointment-book/static/js/main.15678713.js.map"
+    "main.fe638b9c.js.map": "/appointment-book/static/js/main.fe638b9c.js.map"
   },
   "entrypoints": [
     "static/css/main.20de20c2.css",
-    "static/js/main.15678713.js"
+    "static/js/main.fe638b9c.js"
   ]
 }
