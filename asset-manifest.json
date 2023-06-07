@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/book-appointment/static/css/main.20de20c2.css",
-    "main.js": "/book-appointment/static/js/main.fe638b9c.js",
-    "index.html": "/book-appointment/index.html",
-    "main.20de20c2.css.map": "/book-appointment/static/css/main.20de20c2.css.map",
-    "main.fe638b9c.js.map": "/book-appointment/static/js/main.fe638b9c.js.map"
+    "main.css": "/static/css/main.20de20c2.css",
+    "main.js": "/static/js/main.fe638b9c.js",
+    "index.html": "/index.html",
+    "main.20de20c2.css.map": "/static/css/main.20de20c2.css.map",
+    "main.fe638b9c.js.map": "/static/js/main.fe638b9c.js.map"
   },
   "entrypoints": [
     "static/css/main.20de20c2.css",
