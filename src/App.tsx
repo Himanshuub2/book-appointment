@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import Calendar from 'react-calendar';
+
 import 'react-calendar/dist/Calendar.css';
-import moment from 'moment';
+
 import "./index.css"
+import ViewAppointments from './components/ViewAppointments';
+import NewAppointment from './components/NewAppointment';
+
+
 
 const initialAppointments:Array <any>  = [
   {  startTime: '10:00', endTime: '10:30', date: "2023-06-04" },
@@ -10,8 +14,12 @@ const initialAppointments:Array <any>  = [
   {  startTime: '09:00', endTime: '09:30', date: "2023-06-06" },
 ];
 
+
 function App() {
-  const [appointments,setAppointments] =useState<object []>(initialAppointments)
+const scheduledAppointments = localStorage.getItem("scheduledAppointments")
+const parseAppoitments =scheduledAppointments ? JSON.parse(scheduledAppointments): null
+
+  const [appointments,setAppointments] =useState<object []>(parseAppoitments|| initialAppointments )
   const [showAppointment,setShowAppointment] = useState<boolean>(false)
   const [newAppointment,setNewAppointment] = useState<boolean>(false)
 
@@ -53,81 +61,3 @@ function App() {
 }
 
 export default App;
-
-// ///////////////////////////////////////
-
-const ViewAppointments = ({appointments})=>{
-
-  const [selectedDate, setSelectedDate] = useState(moment(new Date()).format("YYYY-MM-DD"));
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const tileContent = ({ date }) => {
-    console.log(appointments[0].date.split("-")[2])
-    console.log(date.getDate())
-   const filteredArray = appointments.filter(item=>item.date.split("-")[2]+"/"+item.date.split("-")[1]===date.getDate()+"/"+date.getMonth())
-   
-   if(filteredArray.length>0){
-    console.log(filteredArray)
-    return <div style={{backgroundColor:"red",width:"8px",height:"10px"}}></div>
-   }
-  };
-
-  return (
-    <div className="App">
-      <h1 className='text-center text-2xl py-4'>Scheduled Appointments</h1>
-      <div className="flex flex-row justify-center items-start gap-12 ">
-        <div className="list-view">
-          <h2 className='text-center text-2xl font-bold'>List View</h2>
-          
-          <select>
-          {
-            appointments.map(item=>(
-              <option value = {(item.startTime)+"-"+(item.endTime)}>{(item.startTime)+"-"+(item.endTime)+"   "+(item.date.split("-")[2]+"/"+item.date.split("-")[1])}</option>
-            ))
-          }
-          </select>
-        </div>
-        <div className="calendar-view">
-          <h2 className='text-center text-2xl font-bold'>Calendar View</h2>
-          <Calendar
-            onChange={handleDateChange}
-            value={selectedDate}
-            tileContent={(date)=>tileContent(date)}
-          />
-        </div>
-      </div>
-    </div>
-  );
-
-}
-
-
-
-
-const NewAppointment = ({setAppointments,appointments})=>{
-    const[dateTime,setDateTime] = useState({startTime:"",endTime:"",date:""})
-
-  const handleChange = (e)=>{
-    setDateTime({...dateTime,[e.target.name]:e.target.value})
-    setAppointments([...appointments,dateTime])
-
-  }
-  const checkAvailibility = (e)=>{
-
-    console.log(appointments)
-
-  }
-
-  return(
-    <div className='flex flex-col gap-2'>
-      Date:<input type = "date" name = "date" className='border-2 border-black' onChange = {handleChange}/>
-      Start<input type = "time" name = "startTime" className='border-2 border-black' onChange = {handleChange}/>
-      End<input type = "time" name = "endTime" className='border-2 border-black' onChange = {handleChange}/>
-      <button className = "p-1 text-white bg-red-400"onClick = {checkAvailibility}>Check Availibility</button>
-
-    </div>
-  )
-}
