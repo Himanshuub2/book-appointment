@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
 
+import PropTypes from "prop-types"
 
 
 const ViewAppointments = ({appointments})=>{
@@ -41,8 +42,8 @@ const ViewAppointments = ({appointments})=>{
             
             <select>
             {
-              appointments.map(item=>(
-                <option value = {(item.startTime)+"-"+(item.endTime)}>{(item.startTime)+"-"+(item.endTime)+"   "+(item.date.split("-")[2]+"/"+item.date.split("-")[1])}</option>
+              appointments.map((item,i)=>(
+                <option key={i}  value = {(item.startTime)+"-"+(item.endTime)}>{(item.startTime)+"-"+(item.endTime)+"   "+(item.date.split("-")[2]+"/"+item.date.split("-")[1])}</option>
               ))
             }
             </select>
@@ -61,5 +62,9 @@ const ViewAppointments = ({appointments})=>{
     );
   
   }
+
+  ViewAppointments.propTypes = {
+    appointments: PropTypes.array.isRequired,
+  };
 
   export default ViewAppointments;
